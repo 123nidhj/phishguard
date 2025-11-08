@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Existing rules for scans collection
+    match /scans/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.uid;
+    }
+    
+    // Existing rules for reports collection
+    match /reports/{docId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Existing rules for admin collection
+    match /admin/{docId} {
+      allow read: if request.auth.token.admin == true;
+    }
+    
+    // Rules for questions collection (chat system)
+    match /questions/{questionId} {
+      // Allow authenticated users to read all questions
+      allow read: if request.auth != null;
+      
+      // Allow authenticated users to create questions
+      allow create: if request.auth != null;
+      
+      // Only allow the specific admin to update questions (for answering)
+      allow update: if request.auth != null 
+        && request.auth.uid == "9z0COxpJEbXJsjElS3ZlUdGNcC22";
+      
+      // Allow question creator or admin to delete
+      allow delete: if request.auth != null 
+        && (request.auth.uid == "9z0COxpJEbXJsjElS3ZlUdGNcC22");
+    }
+    
+    // New rules for user-specific data collections
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Allow users to read and write their scan history
+      match /scans/{scanId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Allow users to read and write their email scan history
+      match /email_scans/{emailScanId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}

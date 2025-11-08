@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+scikit-learn
+joblib
+pandas
+python-multipart
+PyMuPDF
+python-docx
+
+
+
