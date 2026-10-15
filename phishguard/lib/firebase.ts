@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD5WwqiDw5uM09aiM4grQLQ2dHA4bz0Ni4",
-  authDomain: "phisquard.firebaseapp.com",
-  projectId: "phisquard",
-  storageBucket: "phisquard.firebasestorage.app",
-  messagingSenderId: "176259760839",
-  appId: "1:176259760839:web:48aa4a54f5cb494246f4e2",
-  measurementId: "G-EHGDV729BZ"
+  apiKey: "AIzaSyCz8L_Cd0JnBQ7ob6VmVulPjseC-ipGnVU",
+  authDomain: "phishguard-7d017.firebaseapp.com",
+  projectId: "phishguard-7d017",
+  storageBucket: "phishguard-7d017.firebasestorage.app",
+  messagingSenderId: "645989516187",
+  appId: "1:645989516187:web:6fc57bcc99bedbddc9173e",
+  measurementId: "G-7RTC7BRVWJ"
 };
 
 const app = initializeApp(firebaseConfig);
